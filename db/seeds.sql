@@ -1,5 +1,5 @@
 use burgers;
 
-insert into burgers (burger_name, devoured) values ("big mac", false);
-insert into burgers (burger_name, devoured) values ("whopper", false);
-insert into burgers (burger_name, devoured) values ("DIrty Burger", false);
+insert into burgers (burger_name, devoured) values ("chumburger", false);
+insert into burgers (burger_name, devoured) values ("Krabby Patty", false);
+insert into burgers (burger_name, devoured) values ("Dirty Burger", false);
