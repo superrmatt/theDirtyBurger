@@ -7,11 +7,11 @@ let mysql = require("mysql");
 
 // Set up our connection information
 let connection = mysql.createConnection({
-  host: "127.0.0.1",
+  host: "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
-  user: "root",
-  password: "password",
-  database: "burgers"
+  user: "ahzyt8d1n58u915i",
+  password: "vfst1zllilpp0g5i", //take my randomly generated password for a database filled with burgers whose name reference TV shows, it'll be soooooo cool, I dare ya. In fact, you would probably be cooler than Bugz Bunny whenever he outwits Elmer Fudd.
+  database: "pvyuibmi89xv7jwu"
 });
 
 // Connect to the database
