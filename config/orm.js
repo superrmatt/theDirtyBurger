@@ -22,8 +22,8 @@ let orm = {
     });
   },
 
-  // Here our ORM is creating a simple method for performing a query of a single character in the table.
-  // Again, we make use of the callback to grab a specific character from the database.
+  // Here our ORM is creating a simple method for performing a query of a single burger in the table.
+  // Again, we make use of the callback to insert a specific burger from the database.
   insertOne: function(dirtyBurger, callback) {
     let s = "insert into" + tableName + " (burger_name, devoured) values (?,?)";
 
