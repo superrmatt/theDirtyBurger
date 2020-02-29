@@ -1,48 +1,24 @@
-// *********************************************************************************
-// orm.js - This file offers a set of easier-to-use methods for interacting with the MySQL db.
-// *********************************************************************************
+const connection = require('./connection');
 
-// Dependencies
-// =============================================================
-let connection = require("./connection.js");
-
-// ORM
-// =============================================================
-
-let tableName = "burgers";
-
-let orm = {
-  // Here our ORM is creating a simple method for performing a query of the entire table.
-  // We make use of the callback to ensure that data is returned only once the query is done.
-  selectAll: function(callback) {
-    let s = "SELECT * FROM " + tableName;
-
-    connection.query(s, function(err, result) {
-      callback(result);
-    });
-  },
-
-  // Here our ORM is creating a simple method for performing a query of a single burger in the table.
-  // Again, we make use of the callback to insert a specific burger from the database.
-  insertOne: function(dirtyBurger, callback) {
-    let s = "insert into" + tableName + " (burger_name, devoured) values (?,?)";
-
-    connection.query(s, [dirtyBurger.name, dirtyBurger.devoured], function(err, result) {
-      callback(result);
-    });
-  },
-
-  // Here our ORM is creating a simple method for adding burgers to the database
-  // Effectively, the ORM's simple updateOne method translates into a more complex SQL INSERT statement.
-  // Thumbs up if you get the reference to the dirtyBurger
-  updateOne: function(dirtyBurger, callback) {
-
-    let s = "update" + tableName + "set burger_name = ?, devoured = ?, where id = ?";
-
-    connection.query(s, [dirtyBurger.name, dirtyBurger.devoured, dirtyBurger.id], function(err, result) { 
-        callback(result);
-    });
-  }
+const orm = {
+    selectAll: (table, cb) => {
+        connection.query("SELECT * FROM ??", table, (err, result) => {
+            cb(err, result);
+        });
+    },
+    insertOne: (table, fieldOne, fieldTwo, valueOne, valueTwo, cb) => {
+        connection.query("INSERT INTO ?? (??,??) VALUES(?,?)", [table, fieldOne, fieldTwo, valueOne, valueTwo], (err, result) => {
+            cb(err, result);
+        });
+    },
+    updateOne: (table, devoured, burgerID, cb) => {
+        connection.query("UPDATE ?? SET devoured = ? WHERE id = ?", [table, devoured, burgerID], (err, result) => {
+            cb(err, result);
+        });
+    },
+    deleteOne: (table, burgerID, cb) => {
+        connection.query("DELETE FROM ?? WHERE id = ?", [table, burgerID], (err, result) => { cb(err, result) });
+    }
 };
 
 module.exports = orm;
