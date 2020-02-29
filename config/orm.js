@@ -1,18 +1,20 @@
 const connection = require('./connection');
 
+let table = "burgers";
+
 const orm = {
-    selectAll: (table, cb) => {
-        connection.query("SELECT * FROM ??", table, (err, result) => {
+    selectAll: (cb) => {
+        connection.query("SELECT * FROM " + table, (err, result) => {
             cb(err, result);
         });
     },
-    insertOne: (table, fieldOne, fieldTwo, valueOne, valueTwo, cb) => {
-        connection.query("INSERT INTO ?? (??,??) VALUES(?,?)", [table, fieldOne, fieldTwo, valueOne, valueTwo], (err, result) => {
+    insertOne: (name, devoured, cb) => {
+        connection.query("INSERT INTO " + table + " (burger_name, devoured) VALUES (\"" + name + "\" ," + devoured +");", (err, result) => {
             cb(err, result);
         });
     },
-    updateOne: (table, devoured, burgerID, cb) => {
-        connection.query("UPDATE ?? SET devoured = ? WHERE id = ?", [table, devoured, burgerID], (err, result) => {
+    updateOne: (devoured, burgerID, cb) => {
+        connection.query("UPDATE " + table + " SET devoured = " + devoured + " WHERE id = " + burgerID, (err, result) => {
             cb(err, result);
         });
     }

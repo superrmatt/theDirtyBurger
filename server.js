@@ -1,8 +1,8 @@
-let express = require("express");
+var express = require("express");
 
-let PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8080;
 
-let app = express();
+var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -12,20 +12,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set Handlebars.
-let exphbs = require("express-handlebars");
+var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ 
-    extname: "handlebars", 
-    defaultLayout: "main", 
-    layoutsDir: __dirname + "/views/layouts/",
-    partialsDir: __dirname + "/views/partials/"
-  }));
-  
-app.set( "view engine", "handlebars" );
-  
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-let routes = require("./controllers/burger_controller.js");
+var routes = require("./controllers/burger_controller.js");
 
 app.use(routes);
 
