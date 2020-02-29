@@ -15,9 +15,6 @@ const orm = {
         connection.query("UPDATE ?? SET devoured = ? WHERE id = ?", [table, devoured, burgerID], (err, result) => {
             cb(err, result);
         });
-    },
-    deleteOne: (table, burgerID, cb) => {
-        connection.query("DELETE FROM ?? WHERE id = ?", [table, burgerID], (err, result) => { cb(err, result) });
     }
 };
 

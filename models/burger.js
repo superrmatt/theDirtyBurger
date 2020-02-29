@@ -9,9 +9,6 @@ const burger = {
     },
     updateBurger: (devoured, burgerID, callback) => {
         orm.updateOne("burgers", devoured, burgerID, callback);
-    },
-    deleteBurger: (burgerID, callback) => {
-        orm.deleteOne("burgers", burgerID, callback);
     }
 };
 
